@@ -5,34 +5,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using iMedOneDB.Models;
 using Microsoft.AspNetCore.Authorization;
-using Patient_Registration.PatientService;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using Microsoft.AspNetCore.Cors;
+using Patient.Service.Interfaces;
+using Patient.Model;
 
 namespace Patient_Registration.Controllers
 {
-    [ApiController]
+    [Route("api/Patient")]
     public class PatientController : ControllerBase
     {
-        private readonly PatientService.IPatient _patient;
+        private readonly IPatientService _patientService;
 
-        public PatientController(PatientService.IPatient patient)
+
+        public PatientController(IPatientService patientService)
         {
-            _patient = patient;
+            _patientService = patientService;
         }
 
-        [Route("api/SavePatient")]
-        public void Save(TBLPATIENT body)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] PatientModel patientModel)
         {
-            var patient = new[] { body };
-            _patient.SavePatient(patient);
+            await _patientService.CreatePatientAsync(patientModel);
+            return Ok();
         }
 
-        [Route("api/GetPatient")]
-        public IEnumerable<TBLPATIENT> Get()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            return _patient.GetPatient();
+            var result = await _patientService.GetPatientListAsync();
+            return Ok(result);
         }
     }
 }

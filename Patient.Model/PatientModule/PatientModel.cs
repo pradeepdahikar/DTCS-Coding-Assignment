@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Patient_Registration.PatientService
+namespace Patient.Model
 {
-    public class Patient
+    public class PatientModel
     {
         public string Name { get; set; }
         public string SurName { get; set; }

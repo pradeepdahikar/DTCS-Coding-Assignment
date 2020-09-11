@@ -10,7 +10,7 @@ namespace Patient_Registration.Extentions
 {
     public static class DIPatientAPIExtention
     {
-        public static void WiringPatientAPIDependancies(this IServiceCollection services)
+        public static void WiringPatientAPIDependancies(IServiceCollection services)
         {
             services.AddSingleton<IPatientService,PatientService>();
             services.AddSingleton<ILocationService,LocationService>();

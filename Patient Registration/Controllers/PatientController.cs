@@ -27,8 +27,11 @@ namespace Patient_Registration.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PatientModel patientModel)
         {
-            await _patientService.CreatePatientAsync(patientModel);
-            return Ok();
+            var result = await _patientService.CreatePatientAsync(patientModel);
+            if (result)
+                return Ok();
+            else
+                return UnprocessableEntity();
         }
 
         [HttpGet]

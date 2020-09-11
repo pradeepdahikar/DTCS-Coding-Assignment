@@ -30,7 +30,8 @@ namespace Patient_Registration
                 options.EnableEndpointRouting = false;
             }).AddNewtonsoftJson().AddControllersAsServices();
             services.AddCors();
-            services.WiringPatientAPIDependancies();
+            //services.WiringPatientAPIDependancies();
+            DIPatientAPIExtention.WiringPatientAPIDependancies(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

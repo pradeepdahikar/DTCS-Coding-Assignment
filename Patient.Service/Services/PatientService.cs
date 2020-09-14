@@ -14,7 +14,7 @@ namespace Patient.Service.Services
     {
         public Task<bool> CreatePatientAsync(PatientModel patient)
         {
-            //Check id Patient is already registered
+            //Check  Patient is already registered
             var tempPatient = iMedOneDB.DBContext.GetData<TBLPATIENT>();
             tempPatient= tempPatient.Where(p => p.Name == patient.Name && p.SurName == patient.SurName && p.DOB == patient.DOB && p.Gender == patient.Gender);
 
